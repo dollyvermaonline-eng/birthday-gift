@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>16 & 19 November — Two Sides of One Soul</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Outfit:wght@600;800&family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --rose: #ff758f;
+      --gold: #ffd166;
+      --lavender: #cdb4db;
+      --bg-dark: #0f0c18;
+    }
+
+    body {
+      background: radial-gradient(circle at top left, #1f1635 0%, #0f0c18 45%, #170e1c 100%);
+      color: #f8f5ff;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    .font-serif-display {
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    /* Aesthetic Luxury Serif + Calligraphy for Main Hero Heading */
+    .font-hero-aesthetic {
+      font-family: 'Playfair Display', serif;
+      letter-spacing: -0.01em;
+    }
+
+    .font-calligraphy {
+      font-family: 'Alex Brush', cursive;
+      font-weight: 400;
+    }
+
+    /* Pure geometric font so 6 rotated 180deg forms an exact symmetric 9 */
+    .font-digit {
+      font-family: 'Outfit', sans-serif;
+      font-variant-numeric: lining-nums;
+      line-height: 1;
+      user-select: none;
+    }
+
+    .font-handwriting {
+      font-family: 'Caveat', cursive;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.045);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+    }
+
+    /* Digit 6 -> 9 Smooth 180-Degree Rotation */
+    #rotatableDigit {
+      display: inline-block;
+      transform-origin: 50% 52%;
+      transition: transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.5s ease, text-shadow 0.5s ease;
+      cursor: pointer;
+    }
+
+    .glow-16 {
+      color: #ff8fa3;
+      text-shadow: 0 0 38px rgba(255, 117, 143, 0.7);
+    }
+
+    .glow-19 {
+      color: #ffd166;
+      text-shadow: 0 0 38px rgba(255, 209, 102, 0.7);
+    }
+
+    /* Polaroid Styling */
+    .polaroid {
+      background: #fdfbf7;
+      color: #222;
+      padding: 12px 12px 36px 12px;
+      border-radius: 4px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      position: relative;
+    }
+    .polaroid:hover {
+      transform: scale(1.04) rotate(0deg) !important;
+      z-index: 20;
+      box-shadow: 0 22px 45px rgba(255, 117, 143, 0.25);
+    }
+    .washi-tape {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-3deg);
+      width: 90px;
+      height: 24px;
+      background: rgba(255, 183, 197, 0.55);
+      backdrop-filter: blur(2px);
+      border-left: 2px dashed rgba(255,255,255,0.4);
+      border-right: 2px dashed rgba(255,255,255,0.4);
+    }
+
+    /* Sticky Notes */
+    .sticky-note {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .sticky-note:hover {
+      transform: translateY(-6px) rotate(0deg) !important;
+      box-shadow: 0 18px 35px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Wax Seal & Letter */
+    .wax-seal {
+      background: radial-gradient(circle at 30% 30%, #e63946, #9b1c26);
+      box-shadow: 0 8px 20px rgba(230, 57, 70, 0.5), inset 0 2px 6px rgba(255,255,255,0.35);
+      transition: transform 0.3s ease;
+    }
+    .wax-seal:hover {
+      transform: scale(1.08);
+    }
+
+    /* Birthday Candle Flame */
+    .flame {
+      width: 14px;
+      height: 24px;
+      background: radial-gradient(ellipse at bottom, #fff 10%, #ffd166 55%, #ff7b00 100%);
+      border-radius: 50% 50% 35% 35%;
+      box-shadow: 0 0 20px #ffd166, 0 0 40px #ff7b00;
+      animation: flicker 0.9s infinite alternate;
+      transform-origin: bottom center;
+    }
+    .flame.out {
+      opacity: 0;
+      transform: scale(0.2);
+      transition: all 0.4s ease;
+    }
+    @keyframes flicker {
+      0% { transform: rotate(-3deg) scaleY(1); }
+      100% { transform: rotate(3deg) scaleY(1.08); }
+    }
+
+    #bgCanvas, #confettiCanvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+    }
+    #bgCanvas { z-index: 0; }
+    #confettiCanvas { z-index: 50; }
+  </style>
+</head>
+<body class="selection:bg-pink-400 selection:text-black">
+
+  <!-- song.mp3 isi folder me hona chahiye — page open hote hi auto-play hoga -->
+  <audio id="bgMusic" src="song.mp3" autoplay loop preload="auto"></audio>
+
+  <canvas id="bgCanvas"></canvas>
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- Minimal Aesthetic Top Bar -->
+  <header class="sticky top-0 z-40 px-4 py-3 backdrop-blur-md bg-black/25 border-b border-white/10">
+    <div class="max-w-5xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-pink-500/20 text-pink-300 border border-pink-400/30">
+          16 NOV & 19 NOV
+        </span>
+        <span class="text-sm text-white/75">Double Birthday Edition ✨</span>
+      </div>
+      <span class="text-xs text-amber-200/80 tracking-wider uppercase font-medium">
+        Two Dates • One Soul
+      </span>
+    </div>
+  </header>
+
+  <main class="relative z-10 max-w-5xl mx-auto px-4 pt-10 pb-28 space-y-24">
+
+    <!-- HERO SECTION WITH AESTHETIC LUXURY FONT -->
+    <section class="text-center space-y-5 pt-4">
+      <p class="uppercase tracking-[0.28em] text-xs text-amber-300/90 font-semibold">
+        Same Month • Same Vibe • Two Besties
+      </p>
+      <h1 class="font-hero-aesthetic text-4xl sm:text-6xl md:text-7xl font-bold leading-tight">
+        Born in <span class="font-calligraphy text-6xl sm:text-8xl md:text-9xl font-normal text-transparent bg-clip-text bg-gradient-to-r from-pink-300 via-purple-200 to-amber-200 px-2">November</span>,<br>
+        <span class="italic font-semibold text-white/95">Connected Forever</span>
+      </h1>
+      <p class="max-w-2xl mx-auto text-white/75 text-base sm:text-lg leading-relaxed">
+        Ek hi mahine ke do khaas din — <strong class="text-pink-300">16 November</strong> aur <strong class="text-amber-300">19 November</strong>.
+        Dono dates mein <strong class="text-white">'1'</strong> ek jaisa hai, aur <strong class="text-pink-300">'6'</strong> ko bas 180° ghuma do toh <strong class="text-amber-300">'9'</strong> ban jaata hai — bilkul hamari dosti ki tarah!
+      </p>
+      <div class="pt-2">
+        <button onclick="launchConfetti()" class="px-6 py-2.5 rounded-full glass-card hover:bg-white/10 text-sm font-medium text-amber-200 border border-amber-300/30 transition cursor-pointer">
+          🎉 Celebrate Us
+        </button>
+      </div>
+    </section>
+
+    <!-- CORE CONCEPT: 1 & 6 <-> 9 INTERACTIVE 180-DEGREE ROTATOR -->
+    <section class="glass-card rounded-3xl p-6 sm:p-10">
+      <div class="text-center max-w-xl mx-auto mb-8">
+        <h2 class="font-serif-display text-3xl sm:text-4xl font-bold mb-2">The Magic of 16 & 19</h2>
+        <p class="text-sm text-white/70">Slider ko drag karein ya digit par click karke dekhein kaise <strong>6</strong> 180° ghumkar <strong>9</strong> banta hai</p>
+      </div>
+
+      <div class="grid md:grid-cols-12 gap-8 items-center">
+        <!-- Left: Common Digit 1 -->
+        <div class="md:col-span-4 glass-card rounded-2xl p-6 text-center border-purple-400/20">
+          <div class="text-xs uppercase tracking-widest text-purple-300 mb-2">The Constant Digit</div>
+          <div class="font-digit text-7xl font-extrabold text-purple-200 mb-3">1</div>
+          <h3 class="font-semibold text-lg text-white mb-2">Jo Hum Mein Same Hai</h3>
+          <ul class="text-sm text-white/75 space-y-1.5 text-left">
+            <li>• Ek hi mahina — November vibes</li>
+            <li>• Bina bole ek dusre ki baat samajhna</li>
+            <li>• Har mushkil mein ek dusre ka safe space</li>
+            <li>• Same pagalpan aur nonstop hassi</li>
+          </ul>
+        </div>
+
+        <!-- Center: Interactive 16 <-> 9 Rotator -->
+        <div class="md:col-span-4 flex flex-col items-center justify-center py-4">
+          <div class="relative flex items-center justify-center bg-black/35 border border-white/15 rounded-3xl px-10 py-8 shadow-inner">
+            <!-- Fixed 1 -->
+            <span class="font-digit text-8xl sm:text-9xl font-extrabold text-white/95">1</span>
+            <!-- Rotating 6 -> 9 -->
+            <span id="rotatableDigit" onclick="toggleRotation()" title="Click to rotate 180°" class="font-digit text-8xl sm:text-9xl font-extrabold glow-16">6</span>
+          </div>
+
+          <div class="mt-4 text-center">
+            <span id="angleBadge" class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-pink-500/20 text-pink-200 border border-pink-400/30">
+              0° • 16 Nov (Original 6 🌸)
+            </span>
+          </div>
+
+          <!-- Slider & Quick Buttons -->
+          <div class="w-full max-w-xs mt-5 space-y-3">
+            <input id="angleSlider" type="range" min="0" max="180" value="0" oninput="setRotation(this.value)"
+              class="w-full accent-pink-400 cursor-pointer" />
+            <div class="flex justify-center gap-2">
+              <button onclick="setRotation(0)" class="px-3 py-1.5 rounded-lg text-xs bg-pink-500/20 hover:bg-pink-500/35 text-pink-200 border border-pink-400/30 transition cursor-pointer">
+                Reset to 16
+              </button>
+              <button onclick="toggleRotation()" class="px-3 py-1.5 rounded-lg text-xs bg-white/10 hover:bg-white/20 text-white border border-white/20 transition cursor-pointer">
+                🔄 Rotate 180°
+              </button>
+              <button onclick="setRotation(180)" class="px-3 py-1.5 rounded-lg text-xs bg-amber-500/20 hover:bg-amber-500/35 text-amber-200 border border-amber-400/30 transition cursor-pointer">
+                Flip to 19
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Different Digits 6 & 9 -->
+        <div class="md:col-span-4 glass-card rounded-2xl p-6 text-center border-amber-400/20">
+          <div class="text-xs uppercase tracking-widest text-amber-300 mb-2">Different Perspectives</div>
+          <div class="font-digit text-6xl font-extrabold mb-3">
+            <span class="text-pink-300">6</span>
+            <span class="text-white/40 text-3xl mx-1">⇄</span>
+            <span class="text-amber-300">9</span>
+          </div>
+          <h3 class="font-semibold text-lg text-white mb-2">Alag Phir Bhi Ek</h3>
+          <p class="text-sm text-white/75 leading-relaxed">
+            Jaise <strong>6</strong> aur <strong>9</strong> dikhne mein opposite lagte hain par sirf nazariya badalne se ek hi roop hain — waise hi hamari habits alag ho sakti hain, par dil aur bond bilkul ek hai!
+          </p>
+        </div>
+      </div>
+
+      <!-- Personality Contrast Strip -->
+      <div class="grid sm:grid-cols-2 gap-4 mt-8 pt-6 border-t border-white/10 text-sm">
+        <div class="bg-pink-500/10 border border-pink-400/20 rounded-2xl p-4 flex items-center justify-between">
+          <div>
+            <span class="text-xs text-pink-300 uppercase font-semibold">16 Nov Energy (6)</span>
+            <p class="text-white/90 mt-0.5">Overthinker • Aesthetic Lover • Chaotic Hype </p>
+          </div>
+          <span class="font-digit text-3xl font-bold text-pink-300">16</span>
+        </div>
+        <div class="bg-amber-500/10 border border-amber-400/20 rounded-2xl p-4 flex items-center justify-between">
+          <div>
+            <span class="text-xs text-amber-300 uppercase font-semibold">19 Nov Energy (9)</span>
+            <p class="text-white/90 mt-0.5">"It is what it is" • Bold Heart • Calm Soul</p>
+          </div>
+          <span class="font-digit text-3xl font-bold text-amber-300">19</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- POLAROID MEMORIES SECTION (6 PHOTOS) -->
+    <section class="space-y-8">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div>
+          <h2 class="font-serif-display text-3xl sm:text-4xl font-bold">Our Memory Scrapbook</h2>
+          <p class="text-sm text-white/70">Apni 6 favorite photos lagane ke liye button dabayein ya code me image path badlein</p>
+        </div>
+        
+          <input type="file" accept="image/*" multiple onchange="loadCustomPhotos(event)" class="hidden" />
+        </label>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 pt-2">
+        <!-- Photo 1 -->
+        <div class="polaroid -rotate-2">
+          <div class="washi-tape"></div>
+          <div class="aspect-square bg-neutral-200 overflow-hidden rounded-sm">
+            <img id="photo1" src="photo1.jpg" alt="Bestie Memory 1" class="w-full h-full object-cover" />
+          </div>
+          <p class="font-handwriting text-2xl text-center mt-3 text-neutral-800">16 Nov — The Calm & Sweet Vibe 🌸</p>
+        </div>
+
+        <!-- Photo 2 -->
+        <div class="polaroid rotate-1">
+          <div class="washi-tape" style="background: rgba(255, 209, 102, 0.6);"></div>
+          <div class="aspect-square bg-neutral-200 overflow-hidden rounded-sm">
+            <img id="photo2" src="photo2.jpg" alt="Bestie Memory 2" class="w-full h-full object-cover" />
+          </div>
+          <p class="font-handwriting text-2xl text-center mt-3 text-neutral-800">1 + 1 = Unstoppable Duo ✨</p>
+        </div>
+
+        <!-- Photo 3 -->
+        <div class="polaroid -rotate-1">
+          <div class="washi-tape" style="background: rgba(205, 180, 219, 0.65);"></div>
+          <div class="aspect-square bg-neutral-200 overflow-hidden rounded-sm">
+            <img id="photo3" src="photo3.jpg" alt="Bestie Memory 3" class="w-full h-full object-cover" />
+          </div>
+          <p class="font-handwriting text-2xl text-center mt-3 text-neutral-800">19 Nov — The Fun & Chaos Partner 👑</p>
+        </div>
+
+        <!-- Photo 4 -->
+        <div class="polaroid rotate-2">
+          <div class="washi-tape" style="background: rgba(162, 210, 255, 0.6);"></div>
+          <div class="aspect-square bg-neutral-200 overflow-hidden rounded-sm">
+            <img id="photo4" src="photo4.jpg" alt="Bestie Memory 4" class="w-full h-full object-cover" />
+          </div>
+          <p class="font-handwriting text-2xl text-center mt-3 text-neutral-800">Nonstop Gossip & Late Night Talks 🌙</p>
+        </div>
+
+        <!-- Photo 5 -->
+        <div class="polaroid -rotate-2">
+          <div class="washi-tape" style="background: rgba(255, 183, 197, 0.6);"></div>
+          <div class="aspect-square bg-neutral-200 overflow-hidden rounded-sm">
+            <img id="photo5" src="photo5.jpg" alt="Bestie Memory 5" class="w-full h-full object-cover" />
+          </div>
+          <p class="font-handwriting text-2xl text-center mt-3 text-neutral-800">6 ⇄ 9 Different Angles, Same Heart 💞</p>
+        </div>
+
+        <!-- Photo 6 -->
+        <div class="polaroid rotate-1">
+          <div class="washi-tape" style="background: rgba(255, 209, 102, 0.65);"></div>
+          <div class="aspect-square bg-neutral-200 overflow-hidden rounded-sm">
+            <img id="photo6" src="photo6.jpg" alt="Bestie Memory 6" class="w-full h-full object-cover" />
+          </div>
+          <p class="font-handwriting text-2xl text-center mt-3 text-neutral-800">Cheers To Many More Novembers 🥂</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CUTE STICKY NOTES WALL (6 LITTLE REMINDERS) -->
+    <section class="space-y-6">
+      <div class="text-center">
+        <h2 class="font-serif-display text-3xl sm:text-4xl font-bold">Little Reminders For Us</h2>
+        <p class="text-sm text-white/65 mt-1">6 chhoti baatein jo hamari dosti ko sabse khaas banati hain</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Reminder 1 -->
+        <div class="sticky-note bg-pink-200/95 text-neutral-900 p-6 rounded-2xl shadow-xl -rotate-2">
+          <p class="font-handwriting text-2xl font-bold mb-1">Rule #1 of Our Friendship</p>
+          <p class="text-sm leading-relaxed">Chahe hum kitna bhi busy ho jayein, November aate hi double birthday celebration compulsory hai!</p>
+        </div>
+
+        <!-- Reminder 2 -->
+        <div class="sticky-note bg-amber-200/95 text-neutral-900 p-6 rounded-2xl shadow-xl rotate-1">
+          <p class="font-handwriting text-2xl font-bold mb-1">6 ⇄ 9 Theory</p>
+          <p class="text-sm leading-relaxed">Jab bhi kisi baat par alag opinion ho, bas yaad rakhna hum ek hi coin ke do sides hain.</p>
+        </div>
+
+        <!-- Reminder 3 -->
+        <div class="sticky-note bg-purple-200/95 text-neutral-900 p-6 rounded-2xl shadow-xl -rotate-1">
+          <p class="font-handwriting text-2xl font-bold mb-1">Forever Promise</p>
+          <p class="text-sm leading-relaxed">Har high aur low mein '1' bankar hamesha ek dusre ke saath khade rehna hai.</p>
+        </div>
+
+        <!-- Reminder 4 -->
+        <div class="sticky-note bg-sky-200/95 text-neutral-900 p-6 rounded-2xl shadow-xl rotate-2">
+          <p class="font-handwriting text-2xl font-bold mb-1">3-Day Countdown</p>
+          <p class="text-sm leading-relaxed">16 Nov se 19 Nov tak poore 3 din sirf hamari party aur celebration mode on rehta hai!</p>
+        </div>
+
+        <!-- Reminder 5 -->
+        <div class="sticky-note bg-rose-200/95 text-neutral-900 p-6 rounded-2xl shadow-xl -rotate-1">
+          <p class="font-handwriting text-2xl font-bold mb-1">Unspoken Telepathy</p>
+          <p class="text-sm leading-relaxed">Bheed mein ek nazar milte hi bina kuch kahe poori baat samajh jaana sirf hamara superpower hai.</p>
+        </div>
+
+        <!-- Reminder 6 -->
+        <div class="sticky-note bg-emerald-200/95 text-neutral-900 p-6 rounded-2xl shadow-xl rotate-1">
+          <p class="font-handwriting text-2xl font-bold mb-1">No Matter What</p>
+          <p class="text-sm leading-relaxed">Duniya idhar ki udhar ho jaaye, meri sabse pehli call aur sabse aakhiri gossip partner tum hi rahogi!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- WAX-SEALED BIRTHDAY NOTE + VIRTUAL CAKE -->
+    <section class="grid md:grid-cols-12 gap-8 items-stretch">
+      <!-- Cute Letter -->
+      <div class="md:col-span-7 glass-card rounded-3xl p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden">
+        <div>
+          <span class="text-xs uppercase tracking-widest text-pink-300 font-semibold">A Cute Note For Us</span>
+          <h3 class="font-serif-display text-3xl font-bold mt-1 mb-4">Happy Birthday To Both Of Us! 💌</h3>
+
+          <div id="letterClosed" class="py-8 text-center space-y-4">
+            <p class="text-sm text-white/75">Wax seal par click karke hamara birthday letter kholein</p>
+            <button onclick="openLetter()" class="wax-seal w-20 h-20 rounded-full mx-auto flex flex-col items-center justify-center text-white font-serif-display font-bold cursor-pointer">
+              <span class="text-lg leading-none">16&19</span>
+              <span class="text-[10px] tracking-widest uppercase mt-0.5">Open</span>
+            </button>
+          </div>
+
+          <div id="letterOpen" class="hidden space-y-3 text-white/85 text-sm sm:text-base leading-relaxed bg-white/5 p-5 rounded-2xl border border-white/10">
+            <p>Dear Bestie,</p>
+            <p>
+              Log kehte hain best friends ek jaise hote hain, par hum dono ne prove kiya hai ki <strong>6 aur 9</strong> ki tarah alag angle se dekhne par bhi hum ek hi kahaani ke do hisse hain.
+            </p>
+            <p>
+              16 November aur 19 November — sirf 3 din ka faasla, par saalon ki yaadein! Chahe hum kitna bhi lad lein ya alag sochein, <strong>'1'</strong> hamesha common rahega — hamari dosti, hamara trust, aur har mushkil mein ek dusre ke saath khade rehna.
+            </p>
+            <p class="font-handwriting text-2xl text-amber-300 pt-1">
+              Happy Birthday to us😅🩷! Always stay 180° crazy with me!🔥❤️
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Virtual Birthday Cake -->
+      <div class="md:col-span-5 glass-card rounded-3xl p-6 sm:p-8 flex flex-col items-center justify-center text-center">
+        <span class="text-xs uppercase tracking-widest text-amber-300 font-semibold mb-2">Make A Birthday Wish</span>
+        <h3 class="font-serif-display text-2xl font-bold mb-6">Blow The Candle Together</h3>
+
+        <!-- CSS Cake -->
+        <div class="relative mt-4 mb-6 flex flex-col items-center">
+          <div id="candleFlame" class="flame mb-1"></div>
+          <div class="w-3 h-10 bg-gradient-to-b from-pink-200 to-pink-400 rounded-t-sm"></div>
+          <div class="w-36 h-12 bg-gradient-to-r from-pink-400 via-rose-300 to-pink-400 rounded-t-2xl border-b-4 border-white/60 shadow-md flex items-center justify-center text-xs font-bold text-rose-950">
+            16 • NOV • 19
+          </div>
+          <div class="w-48 h-14 bg-gradient-to-r from-amber-300 via-yellow-200 to-amber-300 rounded-t-xl rounded-b-lg shadow-xl"></div>
+        </div>
+
+        <button id="wishBtn" onclick="toggleCandle()" class="px-5 py-2.5 rounded-full bg-amber-400/20 hover:bg-amber-400/30 text-amber-200 border border-amber-300/40 text-sm font-medium transition cursor-pointer">
+          🌬️ Blow Candle & Make a Wish
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // =========================================================
+    // 1. AUTO-PLAY song.mp3 WITHOUT ANY BUTTON
+    // =========================================================
+    const bgMusic = document.getElementById('bgMusic');
+
+    function startBackgroundMusic() {
+      if (bgMusic.paused) {
+        bgMusic.play().catch(() => {
+          // Browser blocked unmuted autoplay; will trigger automatically on first tap/click anywhere
+        });
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', startBackgroundMusic);
+    window.addEventListener('load', startBackgroundMusic);
+
+    ['click', 'touchstart', 'keydown'].forEach(evt => {
+      document.addEventListener(evt, function unlockAudio() {
+        startBackgroundMusic();
+        if (!bgMusic.paused) {
+          document.removeEventListener(evt, unlockAudio);
+        }
+      }, { once: true });
+    });
+
+    // =========================================================
+    // 2. INTERACTIVE 6 <-> 9 (180 DEGREE ROTATION)
+    // =========================================================
+    const digitEl = document.getElementById('rotatableDigit');
+    const sliderEl = document.getElementById('angleSlider');
+    const badgeEl = document.getElementById('angleBadge');
+    let currentAngle = 0;
+
+    function setRotation(deg) {
+      currentAngle = Number(deg);
+      sliderEl.value = currentAngle;
+      digitEl.style.transform = `rotate(${currentAngle}deg)`;
+
+      if (currentAngle >= 90) {
+        digitEl.classList.remove('glow-16');
+        digitEl.classList.add('glow-19');
+        badgeEl.className = 'inline-block px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/20 text-amber-200 border border-amber-400/30';
+        badgeEl.textContent = `${currentAngle}° • 19 Nov (Flipped to 9 ✨)`;
+      } else {
+        digitEl.classList.remove('glow-19');
+        digitEl.classList.add('glow-16');
+        badgeEl.className = 'inline-block px-3 py-1 rounded-full text-xs font-semibold bg-pink-500/20 text-pink-200 border border-pink-400/30';
+        badgeEl.textContent = `${currentAngle}° • 16 Nov (Original 6 🌸)`;
+      }
+    }
+
+    function toggleRotation() {
+      const target = currentAngle < 90 ? 180 : 0;
+      setRotation(target);
+      if (target === 180) launchConfetti();
+    }
+
+    // =========================================================
+    // 3. CUSTOM PHOTO UPLOADER FOR ALL 6 POLAROIDS
+    // =========================================================
+    function loadCustomPhotos(event) {
+      const files = event.target.files;
+      const slots = ['photo1', 'photo2', 'photo3', 'photo4', 'photo5', 'photo6'];
+      for (let i = 0; i < Math.min(files.length, 6); i++) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          document.getElementById(slots[i]).src = e.target.result;
+        };
+        reader.readAsDataURL(files[i]);
+      }
+    }
+
+    // =========================================================
+    // 4. LETTER & BIRTHDAY CANDLE
+    // =========================================================
+    function openLetter() {
+      document.getElementById('letterClosed').classList.add('hidden');
+      document.getElementById('letterOpen').classList.remove('hidden');
+      launchConfetti();
+    }
+
+    let candleLit = true;
+    function toggleCandle() {
+      const flame = document.getElementById('candleFlame');
+      const btn = document.getElementById('wishBtn');
+      candleLit = !candleLit;
+      if (!candleLit) {
+        flame.classList.add('out');
+        btn.textContent = '🔥 Relight Candle';
+        launchConfetti();
+      } else {
+        flame.classList.remove('out');
+        btn.textContent = '🌬️ Blow Candle & Make a Wish';
+      }
+    }
+
+    // =========================================================
+    // 5. STARLIGHT BACKGROUND & CONFETTI CANNON
+    // =========================================================
+    const bgCanvas = document.getElementById('bgCanvas');
+    const bgCtx = bgCanvas.getContext('2d');
+    const confCanvas = document.getElementById('confettiCanvas');
+    const confCtx = confCanvas.getContext('2d');
+
+    function resizeCanvases() {
+      bgCanvas.width = confCanvas.width = window.innerWidth;
+      bgCanvas.height = confCanvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvases);
+    resizeCanvases();
+
+    const stars = Array.from({ length: 75 }, () => ({
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      r: Math.random() * 1.8 + 0.4,
+      a: Math.random(),
+      s: Math.random() * 0.015 + 0.005
+    }));
+
+    function animateStars() {
+      bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+      stars.forEach(st => {
+        st.a += st.s;
+        const alpha = 0.25 + Math.abs(Math.sin(st.a)) * 0.65;
+        bgCtx.beginPath();
+        bgCtx.arc(st.x, st.y, st.r, 0, Math.PI * 2);
+        bgCtx.fillStyle = `rgba(255, 235, 245, ${alpha})`;
+        bgCtx.fill();
+      });
+      requestAnimationFrame(animateStars);
+    }
+    animateStars();
+
+    let confettiPieces = [];
+    function launchConfetti() {
+      const colors = ['#ff758f', '#ffd166', '#cdb4db', '#a2d2ff', '#ffffff'];
+      for (let i = 0; i < 110; i++) {
+        confettiPieces.push({
+          x: window.innerWidth / 2,
+          y: window.innerHeight * 0.55,
+          vx: (Math.random() - 0.5) * 16,
+          vy: (Math.random() - 1) * 16 - 4,
+          size: Math.random() * 7 + 4,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          rot: Math.random() * 360,
+          vRot: (Math.random() - 0.5) * 12
+        });
+      }
+    }
+
+    function animateConfetti() {
+      confCtx.clearRect(0, 0, confCanvas.width, confCanvas.height);
+      confettiPieces.forEach((p, idx) => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.35;
+        p.rot += p.vRot;
+
+        confCtx.save();
+        confCtx.translate(p.x, p.y);
+        confCtx.rotate((p.rot * Math.PI) / 180);
+        confCtx.fillStyle = p.color;
+        confCtx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.6);
+        confCtx.restore();
+
+        if (p.y > confCanvas.height + 20) confettiPieces.splice(idx, 1);
+      });
+      requestAnimationFrame(animateConfetti);
+    }
+    animateConfetti();
+  </script>
+</body>
+</html>
